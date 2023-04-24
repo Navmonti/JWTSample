@@ -1,5 +1,7 @@
 ﻿using JSWSample.Domain.Auth;
 using JSWSample.Domain.IServices;
+using JSWSample.Infrastructure.Shared;
+using JWTSample.Application.IJwt;
 using JWTSample.Application.IRepositories;
 
 namespace JSWSample.Infrastructure.Services
@@ -7,16 +9,23 @@ namespace JSWSample.Infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepository;
-        public AuthService(IAuthRepository authRepository)
+        private readonly IJwtService _jwtService;
+        public AuthService(IAuthRepository authRepository, IJwtService jwtService)
         {
             _authRepository = authRepository;
+            _jwtService = jwtService;
         }
 
-        public async Task<User> Login(string username, string password)
+        public async Task<string> LoginAsync(string username, string password)
         {
             try
             {
-                return await _authRepository.Login(username, password);
+                var hashedPassword = new Utiles().HashedString(password);
+                var user = await _authRepository.Login(username, hashedPassword);
+                if (user is null) { return null; }
+
+                var token = _jwtService.GetTokenAsync(user);
+                return token.ToString();
             }
             catch (Exception ex)
             {
@@ -24,7 +33,7 @@ namespace JSWSample.Infrastructure.Services
             }
         }
 
-        public async Task<User> Signup(User user)
+        public async Task<User> SignupAsync(User user)
         {
             try
             {

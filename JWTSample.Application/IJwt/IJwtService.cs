@@ -4,7 +4,7 @@ namespace JWTSample.Application.IJwt
 {
     public interface IJwtService
     {
-        string GenerateToke(User user);
+        string GetTokenAsync(User user);
         bool IsValid(string Token);
     }
 }

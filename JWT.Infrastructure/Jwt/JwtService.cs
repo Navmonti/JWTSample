@@ -8,23 +8,23 @@ using System.Text;
 
 namespace JSWSample.Infrastructure.Jwt
 {
-    public class JwtService  
+    public class JwtService  : IJwtService
     {
         private readonly IConfiguration _configuration;
         public JwtService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        public string GenerateToke(User user)
+        public string GetTokenAsync(User user)
         {
             try
-            {
-                var issuer = _configuration["Jwt:Issuer"];
-                var audience = _configuration["Jwt:Audience"];
-                var expired = DateTime.UtcNow.AddMinutes(5);
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));
-                var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            { 
+                var expired = DateTime.UtcNow.AddMinutes(5); 
+                var issuer = _configuration["JwtSetting:Issuer"];
+                var audience = _configuration["JwtSetting:Audience"];
+
+                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSetting:Key"])); ;
+                var credential = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSetting:key"])), SecurityAlgorithms.HmacSha256);
                 var claims = new Claim[]
                 {
                  new Claim("UserId", user.UserID.ToString()),
@@ -43,6 +43,11 @@ namespace JSWSample.Infrastructure.Jwt
                 throw ex;
             }
 
+        }
+
+        public bool IsValid(string Token)
+        {
+            return false;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace JSWSample.Domain.IServices
 {
     public interface IAuthService
     {
-        Task<User> Login(string username, string password);
-        Task<User> Signup(User user);
+        Task<string> LoginAsync(string username, string password);
+        Task<User> SignupAsync(User user);
     }
 }

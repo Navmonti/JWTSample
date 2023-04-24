@@ -4,7 +4,7 @@ namespace JSWSample.Infrastructure.Shared
 {
     public class Utiles
     {
-        public static string GenerateRandomString(int length)
+        public string GenerateRandomString(int length)
         {
             Random random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -12,7 +12,7 @@ namespace JSWSample.Infrastructure.Shared
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static string HashedString (string text)
+        public string HashedString (string text)
         {
             SHA256 sha256 = SHA256.Create();
 

@@ -1,11 +1,13 @@
 ﻿using JSWSample.Domain.Auth;
 using Microsoft.AspNetCore.Mvc;
 using JSWSample.Domain.IServices;
+using JSWSample.Api.AttributeFilters;
 
 namespace JSWSample.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
+    [Authentication]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

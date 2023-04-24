@@ -1,6 +1,7 @@
 ﻿using JSWSample.Domain.Auth;
 using JSWSample.Domain.IServices;
 using JSWSample.Infrastructure.Repositories;
+using JWTSample.Application.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace JSWSample.Infrastructure.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserRepository _userRepository;
-        public UserService(UserRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository)
         {
-            _userRepository = userRepository;  
+            _userRepository = userRepository;
         }
 
         public async Task<User> Insert(User user)
