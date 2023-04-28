@@ -1,12 +1,6 @@
 ﻿using JSWSample.Domain.Auth;
 using JSWSample.Infrastructure.Shared;
-using JWTSample.Application;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JSWSample.Infrastructure.DatabaseContext
 {

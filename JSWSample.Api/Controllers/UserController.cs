@@ -1,14 +1,12 @@
 ﻿using JSWSample.Domain.Auth;
-using Microsoft.AspNetCore.Mvc;
 using JSWSample.Domain.IServices;
-using JSWSample.Api.AttributeFilters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JSWSample.Api.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
-    [Authentication]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IUserService _userService;
         public UserController(IUserService userService)
@@ -18,7 +16,7 @@ namespace JSWSample.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Insert(User user) =>
-            Ok(await _userService.Insert(user));
+              Ok(await _userService.Insert(user));
 
         [HttpPut]
         public async Task<IActionResult> Update(User user) =>
@@ -29,8 +27,11 @@ namespace JSWSample.Api.Controllers
             Ok(await _userService.Update(user));
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() =>
-            Ok(await _userService.GetAll());
+        public async Task<IActionResult> GetAll()
+        {
+            var userId = GetCurrentUserId();
+            return Ok(await _userService.GetAll());
+        }
 
         [HttpGet("userId")]
         public async Task<IActionResult> GetById(int userId) =>

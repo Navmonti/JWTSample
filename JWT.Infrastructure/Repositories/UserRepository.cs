@@ -1,7 +1,7 @@
 ﻿using JSWSample.Domain.Auth;
-using Microsoft.EntityFrameworkCore;
-using JWTSample.Application.IRepositories;
 using JSWSample.Infrastructure.DatabaseContext;
+using JWTSample.Application.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace JSWSample.Infrastructure.Repositories
 {

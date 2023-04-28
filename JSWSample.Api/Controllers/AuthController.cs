@@ -1,42 +1,21 @@
 ﻿using JSWSample.Domain.Auth;
 using JSWSample.Domain.IServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JSWSample.Api.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController] 
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly IAuthService _authService;
         public AuthController(IAuthService authService)
         {
             _authService = authService;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Signup(User user)
-        {
-            return Ok(await _authService.SignupAsync(user));
-        }
+        }  
 
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
-        {
-            return Ok(await _authService.LoginAsync(username, password));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {
-            return Ok(null);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> RefreshToken(string token)
-        {
-            return Ok(null);
-        }
+            => Ok(await _authService.LoginAsync(username, password));
     }
 }

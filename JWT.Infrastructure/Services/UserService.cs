@@ -1,12 +1,6 @@
 ﻿using JSWSample.Domain.Auth;
 using JSWSample.Domain.IServices;
-using JSWSample.Infrastructure.Repositories;
 using JWTSample.Application.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JSWSample.Infrastructure.Services
 {
@@ -29,7 +23,6 @@ namespace JSWSample.Infrastructure.Services
                 throw ex;
             }
         }
-
         public async Task<User> Update(User user)
         {
             try
@@ -52,7 +45,6 @@ namespace JSWSample.Infrastructure.Services
                 throw ex;
             }
         }
-
         public async Task<List<User>> GetAll()
         {
             try
@@ -64,7 +56,6 @@ namespace JSWSample.Infrastructure.Services
                 throw ex;
             }
         }
-
         public async Task<User> GetById(int userId)
         {
             try
@@ -76,7 +67,6 @@ namespace JSWSample.Infrastructure.Services
                 throw ex;
             }
         }
-
         public async Task<User> GetByUsername(string username)
         {
             try

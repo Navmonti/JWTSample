@@ -19,19 +19,19 @@ namespace JSWSample.Infrastructure.Jwt
         {
             try
             { 
-                var expired = DateTime.UtcNow.AddMinutes(5); 
+                var expired = DateTime.UtcNow.AddDays(7); 
                 var issuer = _configuration["JwtSetting:Issuer"];
                 var audience = _configuration["JwtSetting:Audience"];
-
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSetting:Key"])); ;
-                var credential = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSetting:key"])), SecurityAlgorithms.HmacSha256);
+                var key = _configuration["JwtSetting:SecretKey"];
+                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)); ;
+                var credential = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)), SecurityAlgorithms.HmacSha256);
                 var claims = new Claim[]
                 {
                  new Claim("UserId", user.UserID.ToString()),
                  new Claim("Username", user.Username)
                 };
 
-                var token = new JwtSecurityToken(claims: claims, expires: expired, signingCredentials: credential);
+                var token = new JwtSecurityToken(claims: claims, expires: expired, signingCredentials: credential , audience : audience , issuer : issuer);
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var stringToken = tokenHandler.WriteToken(token);

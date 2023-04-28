@@ -1,22 +1,14 @@
-﻿using JSWSample.Domain.Auth;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace JSWSample.Api.Controllers
 {
     [ApiController]
-    public class BaseController : Controller
+    public class BaseController : ControllerBase
     {
-        protected User GetUser()
+        protected Guid GetCurrentUserId()
         {
-            // Get the user information from the HttpContext.Items dictionary
-            if (HttpContext.Items.TryGetValue("user", out var user))
-            {
-                var x = (User)user;
-                return x;
-            }
-
-            return null;
+            Guid userId = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId").Value); ;   
+            return userId;
         }
     }
 }

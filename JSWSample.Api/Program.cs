@@ -53,8 +53,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 //JWT Configuration
-var keyConfiguration = builder.Configuration["JwtSetting:Key"];
-var key = Encoding.ASCII.GetBytes(keyConfiguration);
+var issuer = builder.Configuration["JwtSetting:Issuer"];
+var audience = builder.Configuration["JwtSetting:Audience"];  
+var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtSetting:SecretKey"]);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -66,10 +67,13 @@ builder.Services.AddAuthentication(options =>
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidIssuer = issuer,
+        ValidateAudience = true,
+        ValidAudience = audience,
+        ValidateLifetime = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
+        ValidateIssuerSigningKey = true 
     };
 });
 
@@ -98,7 +102,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.UseAuthentication();
-
+app.UseJwtMiddleware();
 app.MapControllers();
 
 app.Run();
