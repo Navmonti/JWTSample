@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTSample.Application", "JWTSample.Application\JWTSample.Application.csproj", "{0378A731-9F05-4667-A45B-3E295E834114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTSample.Application", "JWTSample.Application\JWTSample.Application.csproj", "{0378A731-9F05-4667-A45B-3E295E834114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSWSample.Infrastructure", "JWT.Infrastructure\JSWSample.Infrastructure.csproj", "{41F87090-44B0-44A6-9489-3D5420135CD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTSample.Infrastructure", "JWT.Infrastructure\JWTSample.Infrastructure.csproj", "{41F87090-44B0-44A6-9489-3D5420135CD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSWSample.Domain", "JWT.Domain\JSWSample.Domain.csproj", "{32FC0164-4ABC-45D0-9DFB-E6D7A888924D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTSample.Domain", "JWT.Domain\JWTSample.Domain.csproj", "{32FC0164-4ABC-45D0-9DFB-E6D7A888924D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSWSample.Api", "JSWSample.Api\JSWSample.Api.csproj", "{FF4C8184-963C-4693-99FC-97DCBD24BA26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTSample.Api", "JSWSample.Api\JWTSample.Api.csproj", "{FF4C8184-963C-4693-99FC-97DCBD24BA26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

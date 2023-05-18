@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JWT.Infrastructure\JSWSample.Infrastructure.csproj" />
+    <ProjectReference Include="..\JWT.Infrastructure\JWTSample.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

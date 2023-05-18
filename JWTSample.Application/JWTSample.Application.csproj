@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JWT.Domain\JSWSample.Domain.csproj" />
+    <ProjectReference Include="..\JWT.Domain\JWTSample.Domain.csproj" />
   </ItemGroup>
 
 </Project>
