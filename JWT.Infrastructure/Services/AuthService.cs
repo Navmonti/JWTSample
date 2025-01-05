@@ -47,13 +47,14 @@ namespace JSWSample.Infrastructure.Services
             {
                 var validate = CheckPassword(model.Password, model.ConfirmPassword);
                 if (!validate) throw new Exception("password and confirmPassword is not equal");
+                var hashedPassword = new Utiles().HashedString(model.Password);
 
                 var userObj = new User();
                 userObj.Firstname = model.Firstname;
                 userObj.Lastname = model.Lastname;
                 userObj.Username = model.Username;
-                userObj.Password = model.Password;  
-                userObj.TokenExpireDate = DateTime.UtcNow.AddDays(7);
+                userObj.Password = hashedPassword;  
+                userObj.TokenExpireDate = DateTime.UtcNow.AddDays(7); 
 
                 return userObj;
             }
